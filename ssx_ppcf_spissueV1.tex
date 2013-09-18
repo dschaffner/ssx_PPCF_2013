@@ -42,17 +42,17 @@
 \documentclass[12pt]{iopart}
 \newcommand{\gguide}{{\it Preparing graphics for IOP journals}}
 %Uncomment next line if AMS fonts required
-%\usepackage{iopams}
+\usepackage{iopams}
 \usepackage{graphicx}
 \usepackage{epstopdf}  
 \begin{document}
 
 \title{Turbulence statistics for double-helix flux rope plasmas}
 
-\author{D.A. Schaffner$^{1}$, M.B. Brown$^{1}$, V. Lukin$^{2}$ and A. Wan$^{1}$}
+\author{D.A. Schaffner$^{1}$, M.R. Brown$^{1}$, V.S. Lukin$^{2}$ and A. Wan$^{1}$}
 
 \address{$^{1}$ Swarthmore College, Swarthmore, PA, USA}
-\address{$^{2}$ Naval Research Laboratory, Washington DC, USA}
+\address{$^{2}$ Naval Research Laboratory, Washington, DC, USA}
 \ead{dschaff2@swarthmore.edu}
 \begin{abstract}
 We have previously generated elongated Taylor double-helix flux rope plasmas in the SSX MHD wind tunnel.  These plasmas are remarkable in their rapid relaxation (about one Alfv\'en time) and their description by simple analytical Taylor force-free theory despite their high plasma $\beta$ and high internal flow speeds.  We discuss here the possibility that the turbulence facilitating access to the final state supports coherent structures and intermittency revealed by non-Gaussian signatures in the statistics.  Comparisons to a two-fluid simulation show a similarity in several statistical measures.
@@ -87,11 +87,15 @@ Servidio et al. \cite{Servidio08,Servidio11} detail simulations which observe th
 
 We suspect that the MHD turbulent flow in the SSX wind tunnel contains patches of locally relaxed plasma with reconnection sites at the boundaries.  A fully relaxed flow might be expected to exhibit Gaussian statistics in its fluctuations and power law behavior for the power spectra.  A flow containing coherent structures and reconnection sites should exhibit non-Gaussian statistics.  Simulations show that coherent structures appear rapidly, in less than one dynamical time.  Large numbers of reconnection sites can be identified statistically in MHD turbulence studies \cite{Servidio09,Servidio10a}.  A statistical way to find these coherent structures is to identify rapid changes in the magnetic field vector.  A useful technique is to generate a probability distribution function PDF of vector increments \cite{Greco08,Greco09}.
 
+Greco, {\it et al} \cite{Greco08} identified intermittent structures in MHD turbulence simulations using statistical techniques then connected the structures with regions of high current density.  Using data from a high resolution 3D MHD simulation, they constructed PDFs of magnetic field vector increments $\Delta {\bf B} = |{\bf B}(s + \Delta s) - {\bf B}(s)|$ for two scale separations $\Delta s$; one much smaller than the correlation scale and another about 2 $\lambda_C$.  They found that the PDF of $\Delta {\bf B}$ at the larger increment was close to Gaussian indicating that increments larger than the correlation scale are normally distributed.  However, the PDF at the smaller increment had substantial tails in the distribution and furthermore, had the same distribution as the PDF of a component of the current density, indicating that the non-Gaussian statistics were correlated with intense current sheets.  They also compared the identification of  discontinuities using the spatial interval method described above with coherent structures identified using (PVI) intermittency statistics and found the techniques to be similar.
+
+In a follow-up investigation, Greco, {\it et al} \cite{Greco09} studied the statistics of ACE solar wind data as well as 2D and 3D simulation data using the same techniques.  Time series were analyzed for the solar wind data while spatial separations were analyzed from the simulations.  First, they found that the ACE solar wind data had nearly identical increment PDFs to the 2D simulation data.  Second, they were able to correlate specific features in the 2D simulation to departures from Gaussian statistics in the PDF.  A narrow inner peak is super-Gaussian and corresponds to low values of fluctuations in the lanes between magnetic islands.  An intermediate range is sub-Gaussian and corresponds to fluctuations in current cores inside magnetic flux tubes.  Finally, at several standard deviations, there are super-Gaussian wings corresponding to coherent small-scale current sheet-like structures that form the sharp boundaries between the magnetic flux tubes.
+
 Non-Gaussian statistics and characteristic coherent structures are initiated almost identically in dissipative and ideal systems \cite{Wan09}. Therefore we postulate that the origins of coherence and intermittency are essentially ideal, with dissipation acting only to limit growth of the smallest scale structures.  The fact that our Lundquist number is modest (S = 1000) shouldn't impact the emergence of coherent structures.
 
 We are interested here in the decay phase of the double-helix, in particular, processes that rapidly evolve the state such as patchiness and the evolution of coherent structures.  We present MHD turbulence statistics that suggest the emergence of non-Gaussian structures.
 
-I think the theme of the paper should be that we see this state \cite{Gray13}, and in the PRL we hypothesized that there might be rapidly formed patches of relaxation.  These can be exposed by statistical studies, esp departures from Gaussian statistics.   Connection to HiFi could be some direct comparisons of turbulent statistics.
+%I think the theme of the paper should be that we see this state \cite{Gray13}, and in the PRL we hypothesized that there might be rapidly formed patches of relaxation.  These can be exposed by statistical studies, esp departures from Gaussian statistics.   Connection to HiFi could be some direct comparisons of turbulent statistics.
 
 \section{Experiment}
 
@@ -105,27 +109,58 @@ The flux ropes under investigation are formed in a "`wind-tunnel"' configuration
 
 \section{Results}
 
-The SSX produces a flux-rope plasma that persists on the order of 120$\mu$s. Figure~\ref{fig:timeseries36} shows a timeseries of $|B|$, density, $n$, Mach number, M, and discharge current, $I_{gun}$ for a single shot and for an average of 75 shots. For time analysis, the shots are divided into epochs to account for the dynamical nature of the plasma discharges as indicated by the shading in Figure~\ref{fig:timeseries36}. The formation/selective decay epoch spans from 30 to 40 $\mu$s. As shown previously in ~\cite{Gray13}, the selective decay of the plasma into a Taylor state likely occurs in this time range. The equilibrium epoch ranges from 40 to 60 $\mu$s and is the period of turbulent fluctuations must closely analyzed here. This era sees the fully developed turbulence before resistive effects begin to dissipate the flux rope. The epoch from 60 $\mu$s on is considered the dissipation epoch and represents the flux-rope struture's resistive decay. Clearly, as in Figure~\ref{fig:timeseries36}(a), the magnetic field diffuses away by 120$\mu$s. Remaining unmagnetizied plasma, however, has been shown to persist for many hundreds of microseconds.
+The SSX produces a flux-rope plasma that persists on the order of 120$\mu$s. Figure~\ref{fig:timeseries36} shows a timeseries of numerically integrated B-field---$|B|=\sqrt{B_{r}+B_{\theta}+B_{z}}$---for the innermost tip (1cm from the cylindrical axis), interferometer density, $n$, Mach probe measured Mach number, M, and discharge current, $I_{gun}$ for a sample single shot and for an average of 75 shots. For time analysis, the shots are divided into epochs to account for the dynamical nature of the plasma discharges as indicated by the shading in Figure~\ref{fig:timeseries36}. The formation/selective decay epoch spans from 30 to 40 $\mu$s. As shown previously in ~\cite{Gray13}, the selective decay of the plasma into a Taylor state likely occurs in this time range. The equilibrium epoch ranges from 40 to 60 $\mu$s and is the period of turbulent fluctuations must closely analyzed here. This era sees the fully developed turbulence before resistive effects begin to dissipate the flux rope. The epoch from 60 $\mu$s on is considered the dissipation epoch and represents the flux-rope struture's resistive decay. Clearly, as in Figure~\ref{fig:timeseries36}(a), the magnetic field diffuses away by 120$\mu$s. Remaining unmagnetizied plasma, however, has been shown to persist for many hundreds of microseconds.
+
+\begin{table}
+\caption{\label{tab:params}Plasma parameters during equilibrium epoch for this configuration of SSX.}
+\begin{tabular}{ll}
+%Model form&$\gamma_{s}$ regime&$\nu$&$\chi^2$&$\chi^2/ndf$&$\sigma$\\
+Parameter&Value\\
+\hline
+$V_{a}$&$240km/s$\\
+$f_{ci}$&$7.6MHz$\\
+Axial $\tau_{A}$&0.3$\mu$s\\
+Radial $\tau_{A}$&3.5$\mu$s\\
+$\rho_{i}$&0.091cm\\
+$\delta_{i}$&0.51cm\\
+$C_{s}$&31km/s\\
+$\beta$&0.0967\\
+\end{tabular}
+\end{table}
+
+In the equilibrium epoch, the average magnetic field is 5kG and average density is $2\times 10^{15}$ cm$^{-3}$; thus, radial and axial Alfv\'en transit times are 0.3 and 3.5$\mu$ respectively. Ion temperature is measured using an ion doppler spectrometer system at the midplane. Background ion temperatures (i.e. average temperatures made avoiding large spikes in signal) are on the order of 20eV. Though not measured in this dataset, previous measurements of electron temperature suggest a value of 10eV for this system. Combined with the average field and density values measured, estimates of ion gyrofrequency, ion gyroradius and ion inertial length can be made. These values are listed in Table~\ref{tab:params}. Of particular note, the ratio of system size to ion gyroradius is large, r/$\rho_{i} \cong 80$, suggesting that the influence of the wall on plasma dynamics is minimal.
+
+The density trace in ~Figure\ref{fig:timeseries36}(b) shows peaking in the formation epoch, but an eventual drop to approximately $1\times 10^{15}$cm$^{-3}$ for the majority of the discharge. The initial peaking is likely due to the initial spheromak formation, where plasma is being pushed into the tunnel, but before the threshold for break-off is achieved. The Mach number trace is on average positive indicating flow predominately away from the gun source as would be expected. The average Mach number during the equilibrium epoch is M=0.4 which for the sound speed listed in Table~\ref{tab:params} yields an average flow speed of 12km/s. It is likely that flow speeds toward the center can be even higher.
+
+It can also be observed that the decay time for magnetic field and Mach number, during the dissipation epoch, are on the same order. This suggests a Prandl number of order one. That is, neither plasma resistivity nor flow viscosity is dominante for these discharages.
 
 \begin{figure}[!htbp]
 \centerline{
 \includegraphics[width=16cm]{timeseries36.eps}}
 \caption{\label{fig:timeseries36} Timeseries of (a) Magnetic Field magnitude, (b) Density, (c) Mach Number, and (d) Discharge current. An example single shot is shown (blue line) as well as the average trace for 75 shots (red dashed).}
 \end{figure}
- \begin{figure}[!htbp]
+
+Given the dynamical nature of these plasmas, the spectral decomposition has been approached using a Wavelet technique rather than with purely Fast Fourier Transforms (FFT)~\cite{torrence98,deWit13}. To achieve better resolution in frequency space, a six-order Morlet mother wavelet has been used. The wavelet technique allows for better comparison of spectra for differing time epochs as is encountered in this experiment.  
+
+\begin{figure}[!htbp]
 \centerline{
 \includegraphics[width=16cm]{waveletspec.eps}}
-\caption{\label{fig:waveletspec} Wavelet Spectrum of B-field, density, and Mach number fluctuations.}
+\caption{\label{fig:waveletspec} Wavelet Spectrum of B-field, density, and Mach number fluctuations for the equilibrium epoch, 40 to 60$\mu$s.}
 \end{figure}
 \begin{figure}[!htbp]
 \centerline{
 \includegraphics[width=16cm]{autocorr.eps}}
-\caption{\label{fig:autocorr} Autocorrelation function for $\dot{B}$ fluctuations in the time range 30 to 60 $\mu$s.}
+\caption{\label{fig:autocorr} Autocorrelation function for $\dot{B}$ fluctuations in the time range 40 to 60 $\mu$s.}
 \end{figure}
 \begin{figure}[!htbp]
 \centerline{
 \includegraphics[width=15cm]{pdfs.eps}}
-\caption{\label{fig:pdfs} PDFs of $\Delta \dot{B}$ in the time range 30 to 60 $\mu$s normalized to the standard deviation for each list.}
+\caption{\label{fig:pdfs} PDFs of $\Delta \dot{B}$ in the time range 40 to 60 $\mu$s normalized to the standard deviation for each list.}
+\end{figure}
+\begin{figure}[!htbp]
+\centerline{
+\includegraphics[width=16cm]{flatness.eps}}
+\caption{\label{fig:flatness} The flatness of the PDFs as a function of $\Delta t$. A flatness of 3 would indicate a perfectly Gaussian distribution. A fairly linear slope between 0.1 and 1$\mu$s---corresponding to the frequency range of 1MHz to 10MHz---suggest a power-law like relationsihp between the flatness and the timestep.}
 \end{figure}
 \begin{figure}[!htbp]
 \centerline{
@@ -133,9 +168,27 @@ The SSX produces a flux-rope plasma that persists on the order of 120$\mu$s. Fig
 \caption{\label{fig:radcorr} This version of the plot is a place holder for the newer version Adrian is working on.}
 \end{figure}
 
-The power spectrum as computed using the wavelet technique is shown in Figure~\ref{fig:waveletspec}.
+Since the plasma under investigation is believed to be in a state of MHD turbulence, it is natural to display spectral information in logarthmic format in order to accentuate regions of fluctuation power that follow a power-law trend with frequency. The reduced power spectra for B-field, density and Mach number fluctuations are presented in Figure~\ref{fig:waveletspec}. The B-field curves are produced by first taking a wavelet transform of the $\dot{B}$ timeseries (for any one of the orthogonal components), yielding an array with $\dot{B}$ fluctuation power as a function of both time and frequency. These power values are then scaled by $f^{2}$ which is derived from an assumption that the B-field fluctuations are able to be Fourier decomponsited such that
+%
+\begin{equation}
+\frac{dB}{dt}(t) = ifB
+\end{equation}
+%
+resulting in the relationship between $\tilde{B}(f)$ and $\tilde{\dot{B}}(f)$ as
+%
+\begin{equation}
+\tilde{B}(f) = \frac{1}{f^{2}}\tilde{\dot{B}}(f)
+\end{equation}
+%
+where the tilde signfies a Fourier Transform. The same relationship applies for the Wavelet Transform. Once converted into a B-field power array, the 1-D spectrum is calculated by summing over a certain time region---in this case the equilibrium epoch of 40 to 60$\mu$s. A similar approach is made for density and Mach number, without the frequency scaling.
 
-The autocorrelation function is shown in Figure~\ref{fig:autocorr}
+All three curves have roughly linear behaviour in the spectral region between 100kHz and 10MHz. A power-law fit of spectral power to frequency ($P(f) \sim f{-\alpha}$) is made for density and Mach number in this frequency range using a maximum likelihood estimation method~\cite{clauset09} (MLE) yielding exponents of $\alpha = 1.77$ for the density spectrum and $\alpha = 2.06$ for the mach spectrum which is a proxy for the velocity spectrum in this experiment. An exponent of 2.06 for velocity is slightly steeper than the typical Kolmogorov exponent of -5/3 = 1.66 for hydrodynamic flow fluctuations.
+
+The magnetic field spectrum appears to have two separate regions: a shallower sloped region between 100kHz and 1MHz and a steeper sloped region between 1MHz and 10MHz. MLE fits for these regions give exponents of $\alpha = 2.97$ (shallower) and $\alpha = 4.6$ (steeper). Both the plots and the fits indicate that the spectra slope for B-field fluctuations is steeper than that for Mach/velocity fluctuations. This is perhaps indictative of a dissipation mechanism that is reached at lower frequencies for B-field than for velocity. Dissipation may also be an explanation for the perceived break in slope at around 1MHz which from a canonical turublent spectrum point of view may be a transition from the inertial range to the dissipation range. One possible dissipation mechanism is coupling to the ion gyrofrequency which for the equlilibrium epoch is 7.6MHz which is toward the low end of the steeper spectrum. Another explanation is a breakdown of the Taylor hypothesis (frozen-in flow). The average axial flow as indicated by the Mach probe is 12km/s. Given the width of the Mach probe ($\sim 1.3cm$), the Taylor hypothesis would be valid only for frequencies above 1MHz. Thus the break in slope could be represenative of a transition between fluctuations due to both spatial and temporal changes ($<1$MHz) and those due to only temporal changes ($>1$MHz).
+
+An alternative reason could lie in the decorrelation of flucations. Figure~\ref{fig:autocorr} shows the autocorrelation function for $\dot{B}$ for each of the three axes again during the equilibrium epoch. A decorelation time can be defined as the $\tau$ at which the autocorrelation function crosses zero. For $\dot{B}_{r}$ and $\dot{B}_{\theta}$, this occurs at about $\tau = 1\mu$s which corresponds to a flucuation scale of 1MHz. 
+
+While spectra can be useful for obtaining the relative rate of energy transfer amongst injection, inertial and dissipation scales, they can obscure other signatures of turbulence that can only be seen when looking at higher integral moments. 
 
 A series of probability distribution functions (PDF's) of $\Delta \dot{B}$ values is shown in Figure~\ref{fig:pdfs}. These PDF's are constructing by binning a list of differences between $\dot{B}$ values at different time increments, $\tau$:
 
@@ -202,6 +255,15 @@ Osman, K. T., Matthaeus, W. H., Greco, A., and Servidio, S.: Evidence for Inhomo
 
 \bibitem{Zhang11}
 X. Zhang, D. Dandurand, T. Gray, M. R. Brown, and V. S. Lukin, "Calibrated Cylindrical Mach Probe in a Plasma Wind Tunnel", Review of Scientific Instruments 82, 033510 (2011).
+
+\bibitem{torrence98}
+C. Torrence, G.P. Compo, A practical guide to wavelet analysis. Bull. Am. Meteorol. Soc. 79, 61–78 (1998). doi:10.1175/1520-0477(1998)079<0061:APGTWA>2.0.CO;2
+
+\bibitem{deWit13}
+T. Dudok de Wit, O. Alexandrova, I. Furno, L. Sorriso-Valvo, G. Zimbardo, Methods for Characterising Microphysical Processes in Plasmas. Space Sci. Rev. 0038-6308 (2013). 10.1007/s11214-013-9974-9
+
+\bibitem{clauset09}
+A. Clauset, C. Rohilla Shalizi, M.E.J. Newman, Power-law distributions in empirical data. SIAM Rev. 51, 661–703 (2009). doi:10.1137/070710111
 
 \end{thebibliography}
 
