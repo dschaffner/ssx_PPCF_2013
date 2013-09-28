@@ -39,12 +39,44 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-\documentclass[12pt]{iopart}
-\newcommand{\gguide}{{\it Preparing graphics for IOP journals}}
-%Uncomment next line if AMS fonts required
-\usepackage{iopams}
-\usepackage{graphicx}
-\usepackage{epstopdf}  
+
+%AIP Reprint Class%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[aip,pop,amsmath,amssymb,reprint,superscriptaddress]{revtex4-1} %preprint version
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{epstopdf}
+
+    \renewcommand{\topfraction}{0.9}    % max fraction of floats at top
+    \renewcommand{\bottomfraction}{0.8}    % max fraction of floats at bottom
+    \setcounter{topnumber}{2}
+    \setcounter{bottomnumber}{2}
+    \setcounter{totalnumber}{4}     % 2 may work better
+    \setcounter{dbltopnumber}{2}    % for 2-column pages
+    \renewcommand{\dbltopfraction}{0.9}    % fit big float above 2-col. text
+    \renewcommand{\textfraction}{0.07}    % allow minimal text w. figs
+    \renewcommand{\floatpagefraction}{0.7}    % require fuller float pages
+    \renewcommand{\dblfloatpagefraction}{0.7}    % require fuller float pages
+    \setlength{\abovecaptionskip}{5pt}
+    \setlength{\belowcaptionskip}{5pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\textfloatsep}{5pt} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%IOP preprint class %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\documentclass[12pt]{iopart}
+%\newcommand{\gguide}{{\it Preparing graphics for IOP journals}}
+%%Uncomment next line if AMS fonts required
+%\usepackage{iopams}
+%\usepackage{graphicx}
+%\usepackage{epstopdf}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
 \begin{document}
 
 \title{Turbulence analysis of an experimental flux rope plasma}
@@ -53,7 +85,7 @@
 
 \address{$^{1}$ Swarthmore College, Swarthmore, PA, USA}
 \address{$^{2}$ Naval Research Laboratory, Washington, DC, USA}
-\ead{dschaff2@swarthmore.edu}
+%\ead{dschaff2@swarthmore.edu} %uncomment for AIP reprint version
 \begin{abstract}
 We have previously generated elongated Taylor double-helix flux rope plasmas in the SSX MHD wind tunnel.  These plasmas are remarkable in their rapid relaxation (about one Alfv\'en time) and their description by simple analytical Taylor force-free theory despite their high plasma $\beta$ and high internal flow speeds. We report on the turbulent features observed on these plasmas including frequency spectra, autocorrelation function, and probability distribution functions of increments.  We discuss here the possibility that the turbulence facilitating access to the final state supports coherent structures and intermittency revealed by non-Gaussian signatures in the statistics.  Comparisons to a Hall-MHD simulation show a similarity in several statistical measures.
 \end{abstract}
@@ -64,18 +96,19 @@ We have previously generated elongated Taylor double-helix flux rope plasmas in 
 %\vspace{2pc}
 %\noindent{\it Keywords}: Article preparation, IOP journals
 % Uncomment for Submitted to journal title message
-\submitto{\PPCF}
+
+
+%\submitto{\PPCF}%uncomment for AIP reprint version
 % Comment out if separate title page not required
 \maketitle
 
 \section{Overview}
+
 Flux ropes observed in the heliosphere have two striking properties.   First is their rapid emergence.  Whether in the magnetosphere or in the solar corona, these large scale structures emerge rapidly, often in just a few Alfv\'en crossing times of the system.  Second is their long lifetimes.  Once formed, these structures persist for long times despite being embedded in turbulent MHD plasma.  
 
 Flux ropes have recently been observed {\it in situ} at the subsolar magnetopause \cite{Oieroset11}.  In this remarkable coordinated observation using three THEMIS spacecraft, a flux rope is caught in the process of forming, revealing properties that are fundamentally 3D. Since magnetospheric flux ropes evolve rapidly, observations of flux ropes in the magnetosphere tend to be detected at later stages of their evolution.  The newly formed flux rope reported here appeared to be flanked by two active X-lines as part of the formation process.
 
 Flux ropes are also observed remotely in the solar atmosphere \cite{Patsourakos13}.  On July 19, 2012, an eruption occurred on the solar surface producing dynamical magnetic activity resulting in a destabilized flux rope, the acceleration of a fast ($1000~km/s$) coronal mass ejection, and a long-lived solar flux loop.  The long-lived structure is remarkable in its nearly semi-circular topology, and the persistence of a ``coronal rain'' from the loop top for nearly 24 hours.  The observation was made with the Solar Dynamics Observatory's AIA instrument on the sun's lower right hand limb.   This represents the first direct evidence of a fast CME driven by the prior formation and destabilization of a coronal magnetic flux rope.
-
-%Video at http://www.youtube.com/watch?v=HFT7ATLQQx8
 
 It is interesting to note that in MHD simulations, the peak in the mean square current density $\langle j^2 \rangle$ is also achieved rapidly, within a fraction of an Alfv\'en time. At this time, the turbulence is fully developed, the peak of small scale activity is achieved, and coherent structures appear. 
 
@@ -91,11 +124,9 @@ Greco, {\it et al} \cite{Greco08} identified intermittent structures in MHD turb
 
 In a follow-up investigation, Greco, {\it et al} \cite{Greco09} studied the statistics of ACE solar wind data as well as 2D and 3D simulation data using the same techniques.  Time series were analyzed for the solar wind data while spatial separations were analyzed from the simulations.  First, they found that the ACE solar wind data had nearly identical increment PDFs to the 2D simulation data.  Second, they were able to correlate specific features in the 2D simulation to departures from Gaussian statistics in the PDF.  A narrow inner peak is super-Gaussian and corresponds to low values of fluctuations in the lanes between magnetic islands.  An intermediate range is sub-Gaussian and corresponds to fluctuations in current cores inside magnetic flux tubes.  Finally, at several standard deviations, there are super-Gaussian wings corresponding to coherent small-scale current sheet-like structures that form the sharp boundaries between the magnetic flux tubes.
 
-Non-Gaussian statistics and characteristic coherent structures are initiated almost identically in dissipative and ideal systems \cite{Wan09}. Therefore we postulate that the origins of coherence and intermittency are essentially ideal, with dissipation acting only to limit growth of the smallest scale structures.  The fact that our Lundquist number is modest (S = 1000) shouldn't impact the emergence of coherent structures.
+Non-Gaussian statistics and characteristic coherent structures are initiated almost identically in dissipative and ideal systems \cite{Wan09}. Therefore we postulate that the origins of coherence and intermittency are essentially ideal, with dissipation acting only to limit growth of the smallest scale structures.  The fact that our Lundquist number is modest (S = 1000) should not impact the emergence of coherent structures.
 
-We are interested here in the decay phase of the double-helix, in particular, processes that rapidly evolve the state such as patchiness and the evolution of coherent structures.  We present MHD turbulence statistics that suggest the emergence of non-Gaussian structures.
-
-%I think the theme of the paper should be that we see this state \cite{Gray13}, and in the PRL we hypothesized that there might be rapidly formed patches of relaxation.  These can be exposed by statistical studies, esp departures from Gaussian statistics.   Connection to HiFi could be some direct comparisons of turbulent statistics.
+We are interested here in the post selective decay phase of the double-helix, in particular, processes that rapidly evolve the state such as patchiness and the evolution of coherent structures. First we report on the turbulent temporal power spectrum for various aspects of these experimental flux ropes as well as make fits to spectral indices in order to compare to similar measurements in both the solar wind and MHD simulations. Then, we present MHD turbulence statistics that suggest the emergence of non-Gaussian structures. These experimental turbulent features are compared to simulation data generated by the HiFi code using both a resistive-MHD and Hall-MHD framework and which operates in a geometry and with parameters matched to the experiment.
 
 \section{Experiment}
 
@@ -105,8 +136,8 @@ Magnetic fluctuations are measured using an arrayed $\dot{B}$ probe; $\dot{B}$ i
 
 \begin{figure}[!htbp]
 \centerline{
-\includegraphics[width=10cm]{SSXdiagram.eps}}
-\caption{\label{fig:SSXdiagram} (a) SSX Diagram with the two plasma gun configuration. (b) Simulation B-field structure at an early time, before selective decay. (c) Simulation B-field structure at a later time after selective decay.}
+\includegraphics[width=8.5cm]{SSXdiagram.eps}}
+\caption{\label{fig:SSXdiagram} (a) SSX Diagram with the two plasma gun configuration. The plasma is confined to the cylindrical flux conserver similar to the simulated images in b and c. Magnetic and Mach probes are indicated at the midplane while interferometer density is measured $21.5~cm$ off the midplane. (b)HiFi Simulation B-field structure at an early time, before selective decay. The plasma source is the on the left. (c) Simulation B-field structure at a later time after selective decay.}
 \end{figure}
 
 \section{HiFi Simulation}
@@ -139,20 +170,21 @@ It can also be observed that the decay time for magnetic field and Mach number, 
 
 \begin{figure}[!htbp]
 \centerline{
-\includegraphics[width=8cm]{timeseries36.eps}}
+\includegraphics[width=8.5cm]{timeseries36.eps}}
 \caption{\label{fig:timeseries36} Timeseries of (a) Magnetic Field magnitude, (b) Density, (c) Mach Number, and (d) Discharge current. An example single shot is shown (blue line) as well as the average trace for 35 shots (red line).}
 \end{figure}
 
 \subsection{Spectra}
 
 Given the dynamical nature of these plasmas, the spectral decomposition has been achieved using a Wavelet technique rather than with Fast Fourier Transforms (FFTs). This wavelet technique has been shown to be useful in situations where data may be non-stationary and provides a more accurate method for simultaneous spectral and temporal decomposition then a windowed Fourier transform because it applies a transform at many scales rather than a single scale~\cite{torrence98}. To achieve better resolution in frequency space, a six-order Morlet mother wavelet has been used. Morlet wavelet scales (i.e. frequencies) are generally well matched to Fourier scales, though since we are most interested here in power spectral densities (PSD), the choice of wavelet is not critical~\cite{torrence98}. A wavelet decomposition for a single shot $\dot{B}$ timeseries is shown in Figure~\ref{fig:waveletcontour} with the wavelet scale converted to a Fourier frequency as the y-axis and time as the x-axis. The color scale corresponds to the normalized fluctuation power. Changes in the spectral nature can be seen with time: higher frequency fluctuations grow up and peak around 30$\mu s$, hold stable until about 60$\mu s$, and then begin to dissipate. This change in fluctuations supports the division of the data into epochs.
+
 \begin{figure}[!htbp]
 \centerline{
-\includegraphics[width=16cm]{waveletcontour.eps}}
-\caption{\label{fig:waveletcontour} Wavelet Power Spectrum of $\dot{B}_{z}$ as a function of time for a single shot (same as that shown in Figure~\ref{fig:timeseries36})}
+\includegraphics[width=8.5cm]{waveletcontour.eps}}
+\caption{\label{fig:waveletcontour} Wavelet Power Spectrum of $\dot{B}_{\theta}$ as a function of time for a single shot (same as that shown in Figure~\ref{fig:timeseries36})}
 \end{figure}
 
-The reduced power spectra for B-field, density and Mach number fluctuations are displayed in Figure~\ref{fig:waveletspec}. The B-field curves are produced by first taking a wavelet transform of the $\dot{B}$ timeseries (for any one of the orthogonal components), yielding an array with $\dot{B}$ fluctuation power as a function of both time and frequency as in Figure~\ref{fig:waveletcontour}, and scaling the $\dot{B}$ power by $f^{2}$ in order to recover actual B-field fluction power. This approach is derived from the assumption that the B-field fluctuations are able to be Fourier decomposed such that
+The reduced power spectra for B-field, density and Mach number fluctuations are displayed in Figure~\ref{fig:waveletspec}. The B-field curves are produced by first taking a wavelet transform of the $\dot{B}$ timeseries (for any one of the orthogonal components), yielding an array with $\dot{B}$ fluctuation power as a function of both time and frequency as in Figure~\ref{fig:waveletcontour}, and scaling the $\dot{B}$ power by $f^{2}$ in order to recover actual B-field fluctuation power. This approach is derived from the assumption that the B-field fluctuations are able to be Fourier decomposed such that
 %
 \begin{equation}
 \frac{d}{dt}B(t) = \frac{d}{dt}B_{0}e^{i2\pi f} \sim ifB
@@ -168,7 +200,7 @@ where $|\tilde{x}(f)|^{2}$ is the PSD. The same relationship applies for the Wav
 
 \begin{figure}[!htbp]
 \centerline{
-\includegraphics[width=16cm]{waveletspec.eps}}
+\includegraphics[width=8.5cm]{waveletspec.eps}}
 \caption{\label{fig:waveletspec} Wavelet Spectrum of B-field, density, and Mach number fluctuations for the equilibrium epoch, 40 to 60$\mu$s.}
 \end{figure}
 
@@ -184,7 +216,7 @@ Finally, this break may be due, of course, to a transition to the dissipation ra
 
 \begin{figure}[!htbp]
 \centerline{
-\includegraphics[width=16cm]{autocorr.eps}}
+\includegraphics[width=8.5cm]{autocorr.eps}}
 \caption{\label{fig:autocorr} Autocorrelation function for $\dot{B}$ fluctuations in the time range 40 to 60 $\mu$s.}
 \end{figure}
 
@@ -192,12 +224,12 @@ The HiFi simulation also produces a time series B-field, density and flow. Unlik
 
 \begin{figure}[!htbp]
 \centerline{
-\includegraphics[width=16cm]{simtimeseries64.eps}}
+\includegraphics[width=8.5cm]{simtimeseries64.eps}}
 \caption{\label{fig:simtimeseries64} Time series of magnetic field, density and Mach number for a Resistive MHD simulation, MHD-Hall simulation and a single experimental shot.}
 \end{figure}
 \begin{figure}[!htbp]
 \centerline{
-\includegraphics[width=12cm]{simBspectra.eps}}
+\includegraphics[width=8.5cm]{simBspectra.eps}}
 \caption{\label{fig:simBspectra} Comparison of B-field spectra from Resistive MHD simulation and a Hall-MHD simulation to the experimental spectra. The spectra is computed over a time period from 46 to 66$\mu$s to approximate the equilibrium epoch of the much shorter simulated pulses.}
 \end{figure}
 
@@ -216,13 +248,13 @@ While spectra can be useful for obtaining the relative rate of energy transfer a
 
 \begin{figure}[!htbp]
 \centerline{
-\includegraphics[width=15cm]{pdfs.eps}}
+\includegraphics[width=8.5cm]{pdfs.eps}}
 \caption{\label{fig:pdfs} PDFs of $\Delta \dot{B}$ in the time range 40 to 60 $\mu$s normalized to the standard deviation for each list.}
 \end{figure}
 \begin{figure}[!htbp]
 \centerline{
-\includegraphics[width=16cm]{flatness.eps}}
-\caption{\label{fig:flatness} The flatness of the PDFs as a function of $\Delta t$. A flatness of 3 would indicate a perfectly Gaussian distribution. A fairly linear slope between 0.1 and 1$\mu$s---corresponding to the frequency range of 1MHz to 10MHz---suggest a power-law like relationship between the flatness and the timestep.}
+\includegraphics[width=8.5cm]{flatness.eps}}
+\caption{\label{fig:flatness} The flatness of the PDFs as a function of $\tau$ on a log-log scale. A flatness of 3 would indicate a perfectly Gaussian distribution. A fairly linear slope between 0.1 and 1$\mu$s---corresponding to the frequency range of 1MHz to 10MHz---suggest a power-law like relationship between the flatness and the timestep. The flatness curves for the HiFi simulations are also listed. They show a similar shape, but seem to be offset in $\tau$.}
 \end{figure}
 
 A series of these PDFs for the equilibrium epoch timeseries is shown in Figure~\ref{fig:pdfs} for $\tau$'s of $0.15~\mu s$, $0.75~\mu s$, $3~\mu s$ and $15~\mu s$ which corresponds to filtering the timeseries above frequencies of $6.6~MHz$, $1.3~MHz$, $333~kHz$, and $66~kHz$ respectively. The PDFs are normalized to the root mean square value of the increments and to the total area. A Gaussian function is fit to each distribution. One can clearly see a transition from non-Gaussian distributions for small $\tau$'s to more Gaussian distribution for larger $\tau$'s. The features of the non-Gaussian distributions are indicative of intermittency in the signal; the fat tails signify large swings in the values of the timeseries and the timestep indicates the relative temporal size of the intermittent events.
@@ -327,8 +359,7 @@ A. Clauset, C. Rohilla Shalizi, M.E.J. Newman, Power-law distributions in empiri
 Frisch, U. 1995, Turbulence (Cambridge: Cambridge Univ. Press)
 
 \bibitem{wan12_apj}
-INVESTIGATION OF INTERMITTENCY IN MAGNETOHYDRODYNAMICS AND SOLAR WIND TURBULENCE: SCALE-DEPENDENT KURTOSIS
-Minping Wan et al., The Astrophysical Journal 744, 171 (2012)
+Investigation of intermittency in magnetohydrodynamics and solar wind turbulence: scale-dependent kurtosis, Minping Wan et al., The Astrophysical Journal 744, 171 (2012)
 
 \bibitem{shaikh09}
 3D Simulations of Fluctuation Spectra in the Hall-MHD Plasma, D. Shaikh and P.K. Shukla, Physical Review Letters, 102, 045004 (2009). DOI:	10.1103/PhysRevLett.102.045004
