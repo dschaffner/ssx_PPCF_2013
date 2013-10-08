@@ -1,0 +1,86 @@
+
+Simulations of the SSX MHD wind tunnel experiment have been performed with the HiFi spectral-element multi-fluid modeling framework \cite{Glasser04,Lukin08}.  Within HiFi, the following set of normalized compressible Hall-MHD equations with wall recycling is advanced in time:
+\begin{eqnarray}
+  \ptt{[\ln(\rho)]} &+& \frac{1}{\rho}\nabla\cdot
+  \left\{\rho\vvec_i - D_\rho\rho\nabla[\ln(\rho)]\right\} = 0 
+  \label{eq:Continuity}\\
+  \ptt{\left(\rho\vvec_i\right)} &+&
+  \nabla\cdot\left[\rho\vvec_i\vvec_i + (p_i + p_e)\mathbf{\bar{I}}
+    - \mathbf{\Pi}_i -  \mathbf{\Pi}_e - D_\rho\nabla(\rho\vvec_i)\right] \nonumber \\ 
+  &=& \Jvec\times\Bvec - R_w(\mathbf{r})\rho\vvec_i
+  \label{eq:Momentum}\\
+  \ptt{\Avec} &+& \frac{d_i}{\rho}\nabla\cdot\mathbf{\Pi}_e = \vvec_e\times\Bvec + \frac{d_i}{\rho}\nabla p_e - \eta\Jvec 
+  \label{eq:OhmsLaw} \\
+ \frac{\rho}{\gamma-1}\ptt{T} &+& \rho\nabla\cdot\left[\frac{1}{2}(\vvec_i + \vvec_e)T\right] 
+    -  \nabla\cdot\mathbf{q} - \frac{1}{\rho}\nabla\cdot\left[\frac{D_\rho\rho^2}{\gamma-1}\nabla T\right]  \nonumber \\
+    &=& \frac{1}{(\gamma-1)}\left[\frac{\gamma-2}{2}(\rho\vvec_i + \rho\vvec_e)\cdot\nabla T - R_w(\mathbf{r}) \rho T\right] \nonumber \\
+    &+& \frac{1}{2}\left[\left(\mathbf{\Pi}_i + D_\rho\rho\nabla\vvec_i\right):\nabla\vvec_i + \mathbf{\Pi}_e:\nabla\vvec_e + \eta|\Jvec|^2 \right]
+    \label{eq:Tempr}
+ \end{eqnarray}
+where
+\begin{equation*}
+  \Bvec = \nabla\times\Avec, \hspace{3mm} \Jvec = \nabla\times\Bvec, \hspace{3mm} \vvec_e = \vvec_i - (d_i/\rho)\Jvec, \hspace{3mm} p_i = p_e = \rho T,
+\end{equation*}
+$\rho$ is the plasma number density, $\vvec_i$ and $\vvec_e$ are the ion and electron velocity fields, $\Avec$ is the electro-magnetic vector potential, $\Bvec$ is the magnetic field, $\Jvec$ is the current density, $p_i$ and $p_e$ are the ion and electron pressures which are set equal to each other under the assumption of fast electron-ion temperature equilibration, $T$ is the temperature of either species,  $\mathbf{\Pi}_i=\mu_i\nabla\vvec_i$ is the ion viscosity tensor, $\mathbf{\Pi}_e=\mu_e\rho\nabla\vvec_e$ is the anomalous electron viscosity tensor, $\mathbf{q}=\kappa\nabla T$ is the thermal conduction heat flux, and $\gamma=5/3$ is the ideal gas adiabatic index.  These equations have been normalized in the standard fashion \cite{Lukin11} by choosing three unit normalization quantities, which are set to be the unit length $R_0=R=7.8$cm, the unit magnetic field strength $B_0 = 5$kG, and the unit number density $n_0=10^{16}$ per cubic cm, which also sets the normalized ion inertial length coefficient $d_i=(c/\omega_{pi0})/R_0 = 2.9\times 10^{-2}$.  This value for $d_i$ is used in the Hall-MHD simulations, while in the resistive-MHD simulations all two-fluid term are neglected by setting $d_i=0$.
+
+The resistivity $\eta=\eta(\rho,T,|\Jvec|)$ used in the simulations is a combination of the classical Spitzer resistivity and the semi-empirical Chodura resistivity designed to capture anomalous electron drag at low plasma density and high current density \cite{Chodura75,Sgro76,Meier11}:
+\begin{equation}
+\eta(\rho,T,|\Jvec|) = \frac{\eta_0^{Sp}}{T^{3/2}} + \frac{\eta_0^{Ch}}{\sqrt{\rho}}\left[1 - \exp\left(-\frac{v_0^{Ch}|\Jvec|}{3\rho\sqrt{\gamma T}}\right)\right],
+\end{equation}
+with the normalization constants $\eta_0^{Sp} = 10^{-4}\Lambda\sqrt{2 m_p}\mu_0 e^{3/2}\frac{n_0^2}{R_0 B_0^4} = 2.7\times 10^{-4}$ for the Spitzer resistivity, $\eta_0^{Ch} = \frac{0.1 m_e}{e\sqrt{\epsilon_0 \mu_0}}\frac{1}{R_0 B_0} = 4.4\times10^{-3}$ and $v_0^{Ch} = \frac{\sqrt{m_p}}{e\sqrt{\mu_0}}\frac{1}{R_0\sqrt{n_0}}=2.9\times10^{-2}$ for the Chodura resistivity, expressed in the standard notation and with the Coulomb logarithm set to $\Lambda=10$.
+ 
+The wall recycling terms proportional to $R_w(\mathbf{r})$ in Eq.~(\ref{eq:Momentum}) and Eq.~(\ref{eq:Tempr}) represent the loss of plasma momentum and temperature to the wall under the assumption of near-wall particles impacting the wall at some velocity but sputtering off the wall with negligible velocity, followed by instantaneous thermalization.  It is further assumed that all particles impacting the wall return into the plasma, an assumption that may be relaxed in future work.  For the simulations described here, $R_w(\mathbf{r})$ is given by:
+\begin{equation} 
+R_w(r,z) = \frac{1}{\tau_w}\left\{\exp\left[-\frac{z}{\lambda_w}\right] + \exp\left[-\frac{L/R_0 - z}{\lambda_w}\right] + \exp\left[-\frac{1-r}{\lambda_w}\right]\right\},
+\end{equation}
+where $\lambda_w= 0.05$, equivalent to 0.39~cm, is the characteristic thickness of the near-wall recycling layer in the cylindrical simulation domain given by $(r,z)\in [0,1]\times[0,L/R_0]$ with $L/R_0=11.1$.  Due to lack of a good theoretical estimate for the characteristic wall recycling time $\tau_w$ in the SSX experiment, a series of simulations systematically varying $\tau_w$ was conducted to empirically determine its value by comparing the magnetic field decay times in the simulations to those determined from the experimental magnetic field measurements discussed below.  (Note that since the wall recycling directly impacts the temperature of the plasma, it also significantly impacts the magnetic field resistive decay time via the temperature dependence of the Spitzer resistivity.)  As a result of this single-parameter study with all other input parameters held fixed, the wall recycling time has been set to $\tau_w=2$, equivalent to $1.4 \mu$s. 
+
+Equations (\ref{eq:Continuity}-\ref{eq:Tempr}) also contain several terms proportional to a density diffusion coefficient $D_\rho$.  The specific form for these has been derived by taking velocity moments of a modified Boltzmann transport equation for the ion distribution function $f_i(t,\mathbf{r},\vvec)$ \cite{Krall86}; with the Boltzmann equation modified by adding an extra $D_\rho\nabla_{\mathbf{r}}^2 f_i$ diffusion term designed to represent sub-grid scale plasma mixing.
+
+The simulations are performed on a cylindrical mesh with the spectral elements uniformly distributed in each direction with a grid of $(n_r,n_\theta,n_z)=(24,24,180)$ elements and the $3^{rd}$ order modified Jacobi polynomials used to expand the solution in each direction within each element \cite{Lukin08}.  Thus, the simulations' effective mesh size is $(N_r,N_\theta,N_z)=(72,72,540)$, providing radial resolution of 0.11~cm, angular resolution of 5 degrees, and axial resolution of 0.16~cm.
+
+The simulations are initialized with the plasma at rest but far from an equilibrium, with nearly all of the plasma density, thermal energy, and magnetic field concentrated in one end of the tunnel, within $0 < z < 1.5$. This is intended to mimic the initial formation and the rapid expansion of the magnetized plasma cloud into the near-vacuum chamber in the SSX experiment. Specifically, the plasma number density is initialized with the following spatial distribution:
+\begin{equation}
+\rho(z)|_{t=0} = \left\{\begin{array}{l} 
+1, \hspace{3mm} 0 \le z < (1 - \lambda_\rho) \\
+\frac{1+\rho_{min}}{2} + \frac{1-\rho_{min}}{2}\sin\left(\frac{1-z}{2\lambda_\rho}\pi\right), \hspace{3mm} (1 - \lambda_\rho) \le z \le (1 + \lambda_\rho) \\
+\rho_{min}, \hspace{3mm} (1 + \lambda_\rho) < z \le 11.1
+\end{array}\right.
+\end{equation}
+where $\lambda_\rho=0.4$ is the half-width of the transition from the high-density region to the much lower density background tunnel plasma at $\rho_{min} = 10^{-2}$. The initial temperature distribution assumes an adiabatically expanded plasma with 
+\begin{equation}
+T(z)|_{t=0} = T_0\rho^{\gamma-1}(z)|_{t=0}
+\end{equation}
+and $T_0 = 0.1$, corresponding to the temperature of 6.2~eV in the high plasma density region and 0.3~eV in the rest of the tunnel. It should be noted that an immediate consequence of such a low temperature in the tunnel is a very high resistivity of that background plasma, which, in turn, is equivalent to the near-vacuum condition for the magnetic fields that begin to rapidly expand into the tunnel immediately upon release.
+
+The initial condition for the vector potential $\Avec_0(\mathbf{r})$ prescribing the desired initial magnetic field configuration is generated by following the general prescription of \cite{Lukin11} and numerically solving within the HiFi framework $\nabla^2\Avec_0 = -\Jvec_0$ for $\Avec_0(\mathbf{r})$ given some current density source function $\Jvec_0(\mathbf{r})$ and subject to the boundary conditions $\hat{n}\times\Avec_0=\mathbf{0}$ and
+$\nabla\cdot\Avec_0=0$, where $\hat{n}$ is the unit normal vector at the boundary surfaces.  The following functional form is chosen for $\Jvec_0$:
+\begin{eqnarray}
+\Jvec_0(\mathbf{r}) &=& S(\mathbf{r})
+\lambda_{sph}\left[-\pi J_1(\alpha r)\cos(\pi z)\hat{r} \right.\nonumber\\
+  &+& \left.\lambda_{sph} J_1(\alpha r)\sin(\pi z)\hat{\theta} 
+  + \alpha J_0(\alpha r)\sin(\pi z)\hat{z}\right],
+\end{eqnarray}
+where $\lambda_{sph} = \sqrt{\alpha^2 + \pi^2}$,
+$\alpha = 3.8317$ is the first zero of the $J_1$ Bessel function, and
+\begin{eqnarray*}
+S(\mathbf{r}) &=& S_r(\mathbf{r})\times S_z(\mathbf{r}), \\
+S_r(r) &\equiv& \left\{\begin{array}{l} 
+1, \hspace{3mm} r < (1 - \lambda_J) \\
+\frac{1}{2}\left[1 - \cos\left(\frac{1-r}{\lambda_J}\pi\right)\right], \hspace{3mm} (1 - \lambda_J) \le r \le 1 \end{array}\right. \\
+S_z(z) &\equiv& \left\{\begin{array}{l} 
+\frac{1}{2}\left[1 - \cos\left(\frac{z}{\lambda_J}\pi\right)\right], \hspace{3mm} 0 \le z \le \lambda_J \\
+1, \hspace{3mm} \lambda_J < z < (1 - \lambda_J) \\
+\frac{1}{2}\left[1 - \cos\left(\frac{1-z}{\lambda_J}\pi\right)\right], \hspace{3mm} (1 - \lambda_J) \le z \le 1 \\
+0, \hspace{3mm} 1 < z \le 11.1
+\end{array}\right.
+\end{eqnarray*}
+is the shape function that localizes the current density source function within the high-density plasma region to represent a single $1:1$ aspect ratio Bessel-function spheromak configuration modified so that $\Jvec_0$ drops to $0$ at its edges over the width $\lambda_J=0.1$.  To break axisymmetry, an additional small tilt-like perturbation is introduced into the vector potential at $t=0$ such that
+\begin{equation}
+\Avec(\mathbf{r})|_{t=0} = \Avec_0(\mathbf{r})\left[1 + \delta r\cos(\theta)\exp(-z^2)\right],
+\end{equation}
+with $\delta=0.1$.
+
+All transport coefficient other than resistivity are set to constant and uniform values throughout the simulations with $\kappa=10^{-2}$, $\mu_i=10^{-2}$, $\mu_e=10^{-3}$, and $D_\rho=10^{-4}$.  Free-slip hard wall boundary conditions are imposed on the ion flow with $\hat{n}\cdot\nabla(\hat{n}\times\vvec_i)=\mathbf{0}$ and $\hat{n}\cdot\vvec_i=0$, the diffusive thermal and density transport across the boundary is limited by setting $\hat{n}\cdot\nabla T=\hat{n}\cdot\nabla\rho=0$, and the perfect conductor with no charge accumulation boundary condition on the electro-magnetic fields is set by requiring $\hat{n}\times\Avec=\hat{n}\times\Jvec=\mathbf{0}$ and $\nabla\cdot\Avec=\nabla\cdot\Jvec=0$.
+
+
